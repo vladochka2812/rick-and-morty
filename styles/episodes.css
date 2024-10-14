@@ -18,13 +18,6 @@
   width: 300px;
 }
 
-#episodes_table th {
-  cursor: pointer;
-  text-align: center;
-  transition: 0.4s;
-  font-size: 30px;
-}
-
 #episodes_table th:hover {
   letter-spacing: 5px;
 }

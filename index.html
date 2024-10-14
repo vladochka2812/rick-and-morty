@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="styles/styles.css" />
     <link rel="stylesheet" type="text/css" href="styles/characters.css" />
     <link rel="stylesheet" type="text/css" href="styles/episodes.css" />
+    <link rel="stylesheet" type="text/css" href="styles/locations.css" />
 
     <link
       href="https://fonts.googleapis.com/css?family=Montserrat"
@@ -95,6 +96,33 @@
       </div>
     </section>
 
+    <section>
+      <h2 class="section_title">Locations</h2>
+      <div class="location_filter_wrapper">
+        <div class="filter">
+          <span class="label_holder" id="name_label">
+            <label for="autocomplete_name_input">Name</label>
+          </span>
+          <input type="text" id="autocomplete_name_input" placeholder="" />
+        </div>
+        <div class="filter">
+          <span class="label_holder" id="type_label">
+            <label for="autocomplete_type_input">Type</label>
+          </span>
+          <input type="text" id="autocomplete_type_input" placeholder="" />
+        </div>
+        <div class="filter">
+          <span class="label_holder" id="dimension_label">
+            <label for="autocomplete_dimension_input">Dimension</label>
+          </span>
+          <input type="text" id="autocomplete_dimension_input" placeholder="" />
+        </div>
+      </div>
+      <div class="locations_list_wrapper">
+        <table id="locations_table"></table>
+      </div>
+    </section>
+
     <div id="modal" class="modal" style="display: none">
       <div class="modal_content_wrapper">
         <div class="modal_content">
@@ -107,4 +135,5 @@
   <!-- <script src="scripts/script.js"></script> -->
   <script src="scripts/characters.js"></script>
   <script src="scripts/episodes.js"></script>
+  <script src="scripts/locations.js"></script>
 </html>

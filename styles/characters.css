@@ -11,6 +11,38 @@
   align-items: center;
 }
 
+.form_group {
+  position: relative;
+  width: 200px;
+}
+
+select {
+  font-family: "Montserrat";
+  height: 50px;
+  width: 100%;
+  border: none;
+  background: #3d3d3d;
+  color: white;
+  font-size: 16px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 10px;
+  appearance: none;
+  cursor: pointer;
+}
+
+select:focus {
+  outline: none;
+  border: 1px solid #666;
+}
+
+option {
+  color: #3d3d3d;
+  background: rgb(228, 228, 228);
+  size: 16px;
+}
+
+
 .characters_cards_wrapper {
   display: flex;
   flex-flow: wrap;
