@@ -36,7 +36,6 @@ function displayCharacters(characters) {
     const card = document.createElement("div");
     card.className = "character_card_img";
     card.style.backgroundImage = `url(${character.image})`;
-
     const hoverContent = document.createElement("div");
     hoverContent.className = "hover_character_card";
     hoverContent.style.display = "none";
@@ -65,7 +64,7 @@ function displayCharacters(characters) {
                 <p class='character_info'>Gender: ${character.gender}</p>
                 <p class='character_info'>Species: ${character.species}</p>
                 <p class='character_info'>Status: ${character.status}</p>
-                <p class='character_info'>Location: ${character.location.name}</p>
+                <p class='character_info'>Location: ${character.location?.name}</p>
                 <p class='character_info'>Origin: ${character.origin.name}</p>
 
             </div>
@@ -81,14 +80,12 @@ function displayCharacters(characters) {
 
 async function getCharacters() {
   const apiUrl = `https://rickandmortyapi.com/api/character/?status=${selectStatus.value}&species=${selectSpecies.value}&gender=${selectGender.value}`;
-  console.log("apiUrl", apiUrl);
   try {
     const response = await fetch(apiUrl);
     if (!response.ok) {
       throw new Error("Error " + response.statusText);
     }
     const data = await response.json();
-    console.log(data.results);
     displayCharacters(data.results);
   } catch (error) {
     console.error("There has been a problem with your fetch operation:", error);
