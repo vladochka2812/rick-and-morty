@@ -1,0 +1,97 @@
+.header_wrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+header,
+.bg_image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+header {
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.6),
+    rgba(255, 255, 255, 0),
+    #000
+  );
+}
+
+.bg_image {
+  background-image: url("D:/JS/rick-and-morty/images/home-image.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+header img {
+  height: 15vh;
+}
+
+.header_inside_wrapper {
+  width: 100%;
+  position: absolute;
+  height: 15vh;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+}
+nav ul li {
+  color: #fff;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: 0.5s;
+  display: inline-block;
+  position: relative;
+  margin-right: 3.125rem;
+}
+nav ul li::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  top: 1;
+  bottom: 0;
+  left: 0;
+  background-color: #ffffff;
+  border-radius: 10px;
+  transform-origin: bottom right;
+  transition: transform 0.5s ease-out;
+  margin-top: 5px;
+}
+nav ul li:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+nav ul li:hover {
+  letter-spacing: 1px;
+}
+
+.header_text_wrapper {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  justify-content: center;
+}
+
+.header_text_span {
+  display: flex;
+  align-items: center;
+  font-size: 3.125rem;
+  color: #fff;
+  font-family: "Rubik Glitch", system-ui; 
+}

@@ -1,0 +1,116 @@
+.characters_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.characters_selectors_wrapper {
+  display: flex;
+  background-color: #000;
+  border-radius: 25px;
+  box-shadow: 0 0 1px #d16fd3, 0 0 2px #d16fd3, 0 0 4px #d16fd3, 0 0 8px #d16fd3,
+    0 0 15px #d16fd3;
+  height: 300px;
+  justify-content: space-around;
+  margin: 50px 0;
+  width: 78%;
+  align-items: center;
+}
+
+.characters_cards_wrapper {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+}
+
+.character_card_wrapper {
+  border-radius: 10px;
+  height: 400px;
+  width: 350px;
+  margin: 30px;
+  overflow: hidden;
+  width: 350px;
+}
+
+.character_card_img {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  filter: brightness(70%) contrast(130%);
+  background-size: cover;
+  background-position: center;
+  transition: 0.4s;
+}
+
+.hover_character_card {
+  align-items: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.hover_character_card {
+  align-items: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.character_name {
+  font-family: "Rubik Glitch", cursive;
+  font-size: 30px;
+  text-align: center;
+  color: #fff;
+  z-index: 100;
+}
+
+.character_info {
+  font-family: "Montserrat";
+  text-align: center;
+}
+
+.character_modal_card {
+  display: flex;
+  align-items: center;
+}
+.character_info_wrapper {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 25px;
+}
+.character_modal_image {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.character_modal_image img {
+  width: 90%;
+  border-radius: 50%;
+}
+.character_modal_card .character_info {
+  text-align: left;
+  color: rgba(0, 0, 0, 0.6);
+}
+.character_modal_card .character_name {
+  text-align: left;
+  color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 5px;
+}

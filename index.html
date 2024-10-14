@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="styles/header.css" />
+    <link rel="stylesheet" type="text/css" href="styles/styles.css" />
+    <link rel="stylesheet" type="text/css" href="styles/characters.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Rubik Glitch"
+      rel="stylesheet"
+    />
+    <title>Rick and Morty</title>
+  </head>
+  <body>
+    <div class="header_wrapper">
+      <div class="bg_image"></div>
+      <header>
+        <div class="header_inside_wrapper">
+          <img src="images/logo.png" alt="Rick and Morty" />
+          <nav>
+            <ul>
+              <li onClick="{scrollToCharacters}">Characters</li>
+              <li onClick="{scrollToEpisodes}" class="text">Episodes</li>
+              <li onClick="{scrollToLocations}" class="text">Locations</li>
+              <li onClick="{scrollToWatchList}" class="text">My Watch List</li>
+            </ul>
+          </nav>
+        </div>
+        <div class="header_text_wrapper">
+          <span class="header_text_span">
+            <p>Learn more about your<br />favorite cartoon</p>
+          </span>
+        </div>
+      </header>
+    </div>
+    <section class="characters_wrapper">
+      <h2 class="section_title">Characters</h2>
+      <div class="characters_selectors_wrapper">
+        <div class="form_group">
+          <span class="label_holder" id="status_label_holder"
+            ><label for="status">Status</label></span
+          >
+          <select id="status" name="status_select">
+            <option value="" selected></option>
+            <option value="alive">Alive</option>
+            <option value="dead">Dead</option>
+            <option value="unknown">Unknown</option>
+          </select>
+        </div>
+
+        <div class="form_group">
+          <span class="label_holder" id="species_label_holder"
+            ><label for="species">Species</label></span
+          >
+          <select id="species" name="species">
+            <option value="" selected></option>
+            <option value="human">Human</option>
+            <option value="alien">Alien</option>
+          </select>
+        </div>
+
+        <div class="form_group">
+          <span class="label_holder" id="gender_label_holder"
+            ><label for="gender">Gender</label></span
+          >
+          <select id="gender" name="gender">
+            <option value="" selected></option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="genderless">Genderless</option>
+            <option value="unknown">Unknown</option>
+          </select>
+        </div>
+      </div>
+      <div class="characters_cards_wrapper" id="characters_cards_wrapper"></div>
+    </section>
+    <div id="modal" class="modal" style="display: none">
+      <div class="modal_content_wrapper">
+        <div class="modal_content">
+          <div id="modal_body"></div>
+          <span id="close_modal" class="close_modal">CLOSE</span>
+        </div>
+      </div>
+    </div>
+  </body>
+  <!-- <script src="scripts/script.js"></script> -->
+  <script src="scripts/characters.js"></script>
+</html>
