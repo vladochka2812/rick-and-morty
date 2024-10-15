@@ -24,9 +24,9 @@ header {
 }
 
 .bg_image {
-  background-image: url("images/home-image.jpg");
   background-size: cover;
   background-position: center;
+  object-fit: cover;
 }
 
 header img {
