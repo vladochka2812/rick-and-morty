@@ -29,7 +29,7 @@ function showWatchList() {
   if (watchList.length === 0) {
     const message = document.createElement("h5");
     message.textContent = "You don't have any episodes to watch later";
-    watchListContainer.appendChild(message);
+    watchListContainer.append(message);
   }
   watchList.forEach((episode) => {
     const watchListItem = document.createElement("div");
@@ -42,9 +42,9 @@ function showWatchList() {
     const episodeName = document.createElement("span");
     episodeName.textContent = episode.name;
 
-    watchListItem.appendChild(deleteButton);
-    watchListItem.appendChild(episodeName);
-    watchListItem.appendChild(watchCheckBox);
+    watchListItem.append(deleteButton);
+    watchListItem.append(episodeName);
+    watchListItem.append(watchCheckBox);
     watchListContainer.append(watchListItem);
 
     watchCheckBox.className = "watch";
@@ -105,7 +105,7 @@ autocompleteInput.addEventListener("input", (event) => {
       episodeLabel.style.color = selectStyle.color;
     });
 
-    episodesSuggestionContainer.appendChild(suggestionItem);
+    episodesSuggestionContainer.append(suggestionItem);
   });
 });
 

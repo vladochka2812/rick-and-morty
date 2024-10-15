@@ -13,19 +13,19 @@ function displayLocations(locations) {
     const locationName = document.createElement("td");
     locationName.innerText = location.name;
     locationName.style.width = "35%";
-    locationRow.appendChild(locationName);
+    locationRow.append(locationName);
 
     const locationType = document.createElement("td");
     locationType.innerText = location.type;
     locationType.style.width = "35%";
-    locationRow.appendChild(locationType);
+    locationRow.append(locationType);
 
     const episodeDimension = document.createElement("td");
     episodeDimension.innerText = location.dimension;
     episodeDimension.style.width = "30%";
-    locationRow.appendChild(episodeDimension);
+    locationRow.append(episodeDimension);
 
-    container.appendChild(locationRow);
+    container.append(locationRow);
   });
 }
 
@@ -42,7 +42,7 @@ async function getLocations() {
       const emptyMessage = document.createElement("div");
       emptyMessage.className = "characters_selectors_wrapper";
       emptyMessage.innerHTML = `<h4 class="empty_message">There is nothing to display</h4>`;
-      container.appendChild(emptyMessage);
+      container.append(emptyMessage);
     }
     const data = await response.json();
     if (data.results.length > 0) {

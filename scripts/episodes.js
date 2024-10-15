@@ -12,19 +12,19 @@ function displayEpisodes(episodes) {
     const episodeNum = document.createElement("td");
     episodeNum.innerText = episode.episode;
     episodeNum.style.width = "20%";
-    episodeRow.appendChild(episodeNum);
+    episodeRow.append(episodeNum);
 
     const episodeName = document.createElement("td");
     episodeName.innerText = episode.name;
     episodeName.style.width = "60%";
-    episodeRow.appendChild(episodeName);
+    episodeRow.append(episodeName);
 
     const episodeDate = document.createElement("td");
     episodeDate.innerText = episode.air_date;
     episodeDate.style.width = "20%";
-    episodeRow.appendChild(episodeDate);
+    episodeRow.append(episodeDate);
 
-    container.appendChild(episodeRow);
+    container.append(episodeRow);
   });
 }
 
@@ -41,7 +41,7 @@ async function getEpisodes() {
       const emptyMessage = document.createElement("div");
       emptyMessage.className = "characters_selectors_wrapper";
       emptyMessage.innerHTML = `<h4 class="empty_message">There is nothing to display</h4>`;
-      container.appendChild(emptyMessage);
+      container.append(emptyMessage);
     }
     const data = await response.json();
     if (data.results.length > 0) {

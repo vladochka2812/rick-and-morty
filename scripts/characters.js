@@ -72,9 +72,9 @@ function displayCharacters(characters) {
       )
     );
 
-    cardWrapper.appendChild(card);
-    cardWrapper.appendChild(hoverContent);
-    container.appendChild(cardWrapper);
+    cardWrapper.append(card);
+    cardWrapper.append(hoverContent);
+    container.append(cardWrapper);
   });
 }
 
@@ -88,7 +88,7 @@ async function getCharacters() {
       const emptyMessage = document.createElement("div");
       emptyMessage.className = "characters_selectors_wrapper";
       emptyMessage.innerHTML = `<h4 class="empty_message">There is nothing to display</h4>`;
-      container.appendChild(emptyMessage);
+      container.append(emptyMessage);
     }
     const data = await response.json();
     if (data.results.length > 0) {
