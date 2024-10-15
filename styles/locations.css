@@ -21,6 +21,7 @@
   position: relative;
   width: 300px;
 }
+
 .location_filter_wrapper input:focus {
   outline: none;
   border: 1px solid #666;

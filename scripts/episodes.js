@@ -1,6 +1,5 @@
 function displayEpisodes(episodes) {
   const container = document.getElementById("episodes_table");
-  console.log(container);
   container.innerHTML = `<tr class="table_title" >
                           <th style="width: 20%" >Episode</th>
                           <th style="width: 60%" >Name</th>

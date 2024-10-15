@@ -31,10 +31,9 @@ function displayLocations(locations) {
 
 async function getLocations() {
   const apiUrl = `https://rickandmortyapi.com/api/location?name=${locationName.value}&type=${locationType.value}&dimension=${locationDimension.value}`;
-  console.log(apiUrl);
   try {
-    const container = document.getElementById("locations_table");
     const response = await fetch(apiUrl);
+    const container = document.getElementById("locations_table");
     if (!response.ok) {
       container.innerHTML = "";
       container.style.display = "flex";

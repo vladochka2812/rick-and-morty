@@ -82,11 +82,18 @@ async function getCharacters() {
   const apiUrl = `https://rickandmortyapi.com/api/character/?status=${selectStatus.value}&species=${selectSpecies.value}&gender=${selectGender.value}`;
   try {
     const response = await fetch(apiUrl);
+    const container = document.getElementById("characters_cards_wrapper");
     if (!response.ok) {
-      throw new Error("Error " + response.statusText);
+      container.innerHTML = "";
+      const emptyMessage = document.createElement("div");
+      emptyMessage.className = "characters_selectors_wrapper";
+      emptyMessage.innerHTML = `<h4 class="empty_message">There is nothing to display</h4>`;
+      container.appendChild(emptyMessage);
     }
     const data = await response.json();
-    displayCharacters(data.results);
+    if (data.results.length > 0) {
+      displayCharacters(data.results);
+    }
   } catch (error) {
     console.error("There has been a problem with your fetch operation:", error);
   }

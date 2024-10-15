@@ -8,13 +8,17 @@
     <link rel="stylesheet" type="text/css" href="styles/characters.css" />
     <link rel="stylesheet" type="text/css" href="styles/episodes.css" />
     <link rel="stylesheet" type="text/css" href="styles/locations.css" />
-
+    <link rel="stylesheet" type="text/css" href="styles/watchList.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <link
       href="https://fonts.googleapis.com/css?family=Montserrat"
       rel="stylesheet"
     />
     <link
-      href="https://fonts.googleapis.com/css?family=Rubik Glitch"
+      href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap"
       rel="stylesheet"
     />
     <title>Rick and Morty</title>
@@ -123,6 +127,28 @@
       </div>
     </section>
 
+    <section>
+      <h2 class="section_title">Watch List</h2>
+      <div class="watch_list_wrapper">
+        <div class="watch_list_search">
+          <div class="episode_autocomplete_wrapper">
+            <span class="label_holder" id="episodes_autocomplete_label">
+              <label for="episode_autocomplete_input">Episodes</label>
+            </span>
+            <input
+              type="text"
+              id="episode_autocomplete_input"
+              placeholder=""
+              value=""
+            />
+            <div id="episodes_suggestion" class="episodes_suggestion"></div>
+          </div>
+          <button id="add_to_watch_list">Add episode</button>
+        </div>
+        <div id="watch_list"></div>
+      </div>
+    </section>
+
     <div id="modal" class="modal" style="display: none">
       <div class="modal_content_wrapper">
         <div class="modal_content">
@@ -132,8 +158,8 @@
       </div>
     </div>
   </body>
-  <!-- <script src="scripts/script.js"></script> -->
   <script src="scripts/characters.js"></script>
   <script src="scripts/episodes.js"></script>
   <script src="scripts/locations.js"></script>
+  <script src="scripts/watchList.js"></script>
 </html>
