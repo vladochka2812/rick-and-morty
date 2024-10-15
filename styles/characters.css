@@ -141,3 +141,10 @@ option {
   color: rgba(0, 0, 0, 0.6);
   margin-bottom: 5px;
 }
+
+@media screen and (max-width: 1024px) {
+  .characters_selectors_wrapper {
+    flex-direction: column;
+    box-shadow: none;
+  }
+}

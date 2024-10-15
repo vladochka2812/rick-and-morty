@@ -3,8 +3,6 @@
   margin: 0;
   scrollbar-color: #d16fd3 #000;
   scrollbar-gutter: stable;
-  /* font-family: "ik Glitch", sans-serif; */
-  /* font-family: "Montserrat", sans-serif; */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -12,7 +10,6 @@
 
 body {
   background: #000;
-  margin-bottom: 50px;
 }
 
 section {
@@ -137,4 +134,38 @@ tr:nth-child(even) {
   font-size: 30px;
   color: rgb(34, 34, 34);
   letter-spacing: 4px;
+}
+
+@media screen and (max-width: 1024px) {
+  th {
+    font-size: 22px;
+  }
+
+  tr {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  th {
+    font-size: 20px;
+  }
+
+  tr {
+    font-size: 14px;
+    height: 40px;
+    padding: 0 10px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  th {
+    font-size: 18px;
+  }
+
+  tr {
+    font-size: 12px;
+    height: 50px;
+    padding: 0 5px;
+  }
 }

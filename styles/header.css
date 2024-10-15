@@ -51,12 +51,12 @@ nav ul {
 nav ul li {
   color: #fff;
   font-family: "Montserrat", sans-serif;
-  font-size: 1.25rem;
+  font-size: 20px;
   cursor: pointer;
   transition: 0.5s;
   display: inline-block;
   position: relative;
-  margin-right: 3.125rem;
+  margin-right: 50px;
 }
 nav ul li::after {
   content: "";
@@ -91,8 +91,39 @@ nav ul li:hover {
 .header_text_span {
   display: flex;
   align-items: center;
-  font-size: 3.125rem;
+  font-size: 50px;
   color: #fff;
-  font-family: "Rubik Glitch", system-ui; 
+  font-family: "Rubik Glitch", system-ui;
   font-weight: 400;
+}
+
+@media screen and (max-width: 1024px) {
+  .header_inside_wrapper {
+    flex-direction: column;
+  }
+
+  header img {
+    height: 10vh;
+  }
+
+  nav ul li {
+    font-size: 18px;
+  }
+  .header_text_span {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  nav ul li {
+    font-size: 15px;
+    margin-right: 30px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  nav ul li {
+    font-size: 14px;
+    margin-right: 10px;
+  }
 }

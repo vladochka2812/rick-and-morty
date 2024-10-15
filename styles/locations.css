@@ -30,3 +30,11 @@
 .locations_list_wrapper {
   width: 100%;
 }
+
+@media screen and (max-width: 1024px) {
+  .location_filter_wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+}
