@@ -1,24 +1,44 @@
-export function openModal(content) {
-  const modal = document.getElementById("modal");
-  const modalBody = document.getElementById("modal_body");
-  modalBody.innerHTML = "";
-  modalBody.innerHTML = content;
-  modal.style.display = "flex";
-  window.document.body.style.overflowY = "hidden";
-}
+const menuCharacters = document.getElementById("menu_characters");
+const menuEpisodes = document.getElementById("menu_episodes");
+const menuLocations = document.getElementById("menu_locations");
+const menuWatchList = document.getElementById("menu_watch_list");
 
-export function closeModal() {
-  const modal = document.getElementById("modal");
-  modal.style.display = "none";
-  window.document.body.style.overflowY = "scroll";
-}
-
-document.getElementById("modal").addEventListener("click", function (event) {
-  if (event.target === modal) {
-    closeModal();
-  }
+menuCharacters.addEventListener("click", () => {
+  const targetElement = document.getElementById("characters");
+  const topPosition =
+    targetElement.getBoundingClientRect().top + window.scrollY;
+  window.scrollTo({
+    top: topPosition,
+    behavior: "smooth",
+  });
 });
 
-document
-  .getElementById("close_modal")
-  .addEventListener("click", () => closeModal());
+menuEpisodes.addEventListener("click", () => {
+  const targetElement = document.getElementById("episodes");
+  const topPosition =
+    targetElement.getBoundingClientRect().top + window.scrollY;
+  window.scrollTo({
+    top: topPosition,
+    behavior: "smooth",
+  });
+});
+
+menuLocations.addEventListener("click", () => {
+  const targetElement = document.getElementById("locations");
+  const topPosition =
+    targetElement.getBoundingClientRect().top + window.scrollY;
+  window.scrollTo({
+    top: topPosition,
+    behavior: "smooth",
+  });
+});
+
+menuWatchList.addEventListener("click", () => {
+  const targetElement = document.getElementById("my_watch_list");
+  const topPosition =
+    targetElement.getBoundingClientRect().top + window.scrollY;
+  window.scrollTo({
+    top: topPosition,
+    behavior: "smooth",
+  });
+});
