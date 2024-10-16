@@ -105,12 +105,6 @@ async function getCharacters() {
 
 
 
-const selectStyle = {
-  position: "absolute",
-  top: "-8px",
-  fontSize: "14px",
-  color: "white",
-};
 
 inputStyleLabel(selectStatus, statusLabel);
 inputStyleLabel(selectGender, genderLabel);

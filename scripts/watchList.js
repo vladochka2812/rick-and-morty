@@ -1,4 +1,12 @@
 let episodesList = [];
+
+const autocompleteInput = document.getElementById("episode_autocomplete_input");
+const episodesSuggestionContainer = document.getElementById(
+  "episodes_suggestion"
+);
+const episodeLabel = document.getElementById("episodes_autocomplete_label");
+const addToWatchListButton = document.getElementById("add_to_watch_list");
+
 async function getEpisodesNameList() {
   try {
     let episodesData = [];
@@ -16,69 +24,84 @@ async function getEpisodesNameList() {
     console.error("There has been a problem with your fetch operation:", error);
   }
 }
+
 const colorWatched = {
   true: "linear-gradient(135deg, rgb(0, 255, 240) 0%, rgb(128, 255, 83) 100%)",
   false: "linear-gradient(135deg, rgb(17, 17, 17) 0%, rgb(42, 42, 42) 100%)",
 };
-
+const noEpisodesMessage = function (container) {
+  container.innerHTML = ``;
+  const message = document.createElement("h5");
+  message.textContent = "You don't have any episodes to watch later";
+  container.append(message);
+};
 function showWatchList() {
   let watchList = JSON.parse(localStorage.getItem("watchList")) || [];
   const watchListContainer = document.getElementById("watch_list");
   watchListContainer.innerHTML = ``;
   if (watchList.length === 0) {
-    const message = document.createElement("h5");
-    message.textContent = "You don't have any episodes to watch later";
-    watchListContainer.append(message);
+    noEpisodesMessage(watchListContainer);
   }
+
   watchList.forEach((episode) => {
-    let { id, name, watched } = episode;
-    const watchListItem = document.createElement("div");
-    watchListItem.id = id;
-
-    const deleteButton = document.createElement("button");
-    deleteButton.innerHTML = `<i class="fa fa-trash-o"></i>`;
-
-    const watchCheckBox = document.createElement("span");
-    watchCheckBox.className = "watch";
-    watchCheckBox.style.background = episode.watched
-      ? colorWatched.true
-      : colorWatched.false;
-
-    const episodeName = document.createElement("span");
-    episodeName.textContent = name;
-
-    watchListItem.append(deleteButton, episodeName, watchCheckBox);
+    const watchListItem = createItem(episode, watchList, watchListContainer);
     watchListContainer.append(watchListItem);
+  });
+}
 
-    watchCheckBox.addEventListener("click", () => {
-      watched = !watched;
-      watchCheckBox.style.background = watched
+function createItem({ id, name, watched }, watchList, watchListContainer) {
+  const watchListItem = document.createElement("div");
+  watchListItem.id = id;
+
+  const watchCheckBox = document.createElement("span");
+  watchCheckBox.className = "watch";
+  watchCheckBox.style.background = watched
+    ? colorWatched.true
+    : colorWatched.false;
+  watchCheckBox.addEventListener("click", () =>
+    toggleState(id, watchList, watchCheckBox)
+  );
+
+  const deleteButton = document.createElement("button");
+  deleteButton.innerHTML = `<i class="fa fa-trash-o"></i>`;
+  deleteButton.addEventListener("click", () =>
+    handleDeleteItem(id, watchListContainer, watchListItem)
+  );
+
+  const episodeName = document.createElement("span");
+  episodeName.textContent = name;
+
+  watchListItem.append(deleteButton, episodeName, watchCheckBox);
+  return watchListItem;
+}
+
+function toggleState(id, watchList, checkBox) {
+  const updatedWatchList = watchList.map((item) => {
+    if (item.id === id) {
+      item.watched = !item.watched;
+      checkBox.style.background = item.watched
         ? colorWatched.true
         : colorWatched.false;
-      watchList = watchList.map((item) => (item.id === id ? episode : item));
-      localStorage.setItem("watchList", JSON.stringify(watchList));
-    });
-
-    deleteButton.addEventListener("click", () => {
-      deleteButton.style.cursor = "pointer";
-      watchList = watchList.filter((item) => item.id !== episode.id);
-      localStorage.setItem("watchList", JSON.stringify(watchList));
-      watchListContainer.removeChild(watchListItem);
-    });
+    }
+    return item;
   });
+  localStorage.setItem("watchList", JSON.stringify(updatedWatchList));
+}
+
+function handleDeleteItem(id, container, listItem) {
+  const watchList = JSON.parse(localStorage.getItem("watchList")) || [];
+  const updatedWatchList = watchList.filter((item) => item.id !== id);
+  if (updatedWatchList.length === 0) {
+    noEpisodesMessage(container);
+  }
+  localStorage.setItem("watchList", JSON.stringify(updatedWatchList));
+  container.removeChild(listItem);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   getEpisodesNameList();
   showWatchList();
 });
-
-const autocompleteInput = document.getElementById("episode_autocomplete_input");
-const episodesSuggestionContainer = document.getElementById(
-  "episodes_suggestion"
-);
-const episodeLabel = document.getElementById("episodes_autocomplete_label");
-const addToWatchListButton = document.getElementById("add_to_watch_list");
 
 autocompleteInput.addEventListener("input", (event) => {
   const inputValue = event.target.value.trim();
@@ -101,7 +124,6 @@ autocompleteInput.addEventListener("input", (event) => {
       episodeLabel.style.fontSize = selectStyle.fontSize;
       episodeLabel.style.color = selectStyle.color;
     });
-
     episodesSuggestionContainer.append(suggestionItem);
   });
 });
