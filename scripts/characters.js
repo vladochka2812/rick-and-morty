@@ -1,10 +1,16 @@
+const selectStatus = document.getElementById("status");
+const statusLabel = document.getElementById("status_label_holder");
+const selectSpecies = document.getElementById("species");
+const speciesLabel = document.getElementById("species_label_holder");
+const selectGender = document.getElementById("gender");
+const genderLabel = document.getElementById("gender_label_holder");
+
 function openModal(content) {
   const modal = document.getElementById("modal");
   const modalBody = document.getElementById("modal_body");
   modalBody.innerHTML = "";
   modalBody.innerHTML = content;
   modal.style.display = "block";
-
   window.document.body.style.overflowY = "hidden";
 }
 
@@ -29,21 +35,23 @@ function displayCharacters(characters) {
   container.innerHTML = "";
 
   characters.forEach((character) => {
+    const { name, image, gender, species, status, location, origin } =
+      character;
     const cardWrapper = document.createElement("div");
     cardWrapper.className = "character_card_wrapper";
     cardWrapper.style.position = "relative";
 
     const card = document.createElement("div");
     card.className = "character_card_img";
-    card.style.backgroundImage = `url(${character.image})`;
+    card.style.backgroundImage = `url(${image})`;
     const hoverContent = document.createElement("div");
     hoverContent.className = "hover_character_card";
     hoverContent.style.display = "none";
-    hoverContent.innerHTML = `<h3 class='character_name'>${character.name}</h3>
-                            <p class='character_info'>Gender: ${character.gender}</p>
-                            <p class='character_info'>Species: ${character.species}</p>
-                            <p class='character_info'>Status: ${character.status}</p>
-                            <p class='character_info'>Location: ${character.location.name}</p>`;
+    hoverContent.innerHTML = `<h3 class='character_name'>${name}</h3>
+                            <p class='character_info'>Gender: ${gender}</p>
+                            <p class='character_info'>Species: ${species}</p>
+                            <p class='character_info'>Status: ${status}</p>
+                            <p class='character_info'>Location: ${location.name}</p>`;
 
     cardWrapper.addEventListener("mouseenter", () => {
       hoverContent.style.display = "flex";
@@ -57,26 +65,26 @@ function displayCharacters(characters) {
       openModal(
         `<div class='character_modal_card'> 
             <div class='character_modal_image'>
-                <img src=${character.image} alt=${character.name} />
+                <img src=${image} alt=${name} />
             </div>
             <div class='character_info_wrapper'>
-                <h1 class='character_name'>${character.name}</h1>
-                <p class='character_info'>Gender: ${character.gender}</p>
-                <p class='character_info'>Species: ${character.species}</p>
-                <p class='character_info'>Status: ${character.status}</p>
-                <p class='character_info'>Location: ${character.location?.name}</p>
-                <p class='character_info'>Origin: ${character.origin.name}</p>
+                <h1 class='character_name'>${name}</h1>
+                <p class='character_info'>Gender: ${gender}</p>
+                <p class='character_info'>Species: ${species}</p>
+                <p class='character_info'>Status: ${status}</p>
+                <p class='character_info'>Location: ${location.name}</p>
+                <p class='character_info'>Origin: ${origin.name}</p>
 
             </div>
         </div>`
       )
     );
 
-    cardWrapper.append(card);
-    cardWrapper.append(hoverContent);
+    cardWrapper.append(card, hoverContent);
     container.append(cardWrapper);
   });
 }
+
 
 async function getCharacters() {
   const apiUrl = `https://rickandmortyapi.com/api/character/?status=${selectStatus.value}&species=${selectSpecies.value}&gender=${selectGender.value}`;
@@ -84,20 +92,18 @@ async function getCharacters() {
     const response = await fetch(apiUrl);
     const container = document.getElementById("characters_cards_wrapper");
     if (!response.ok) {
-      container.innerHTML = "";
-      const emptyMessage = document.createElement("div");
-      emptyMessage.className = "characters_selectors_wrapper";
-      emptyMessage.innerHTML = `<h4 class="empty_message">There is nothing to display</h4>`;
-      container.append(emptyMessage);
+      emptyMessage(container);
     }
     const data = await response.json();
-    if (data.results.length > 0) {
+    if (data.results) {
       displayCharacters(data.results);
     }
   } catch (error) {
     console.error("There has been a problem with your fetch operation:", error);
   }
 }
+
+
 
 const selectStyle = {
   position: "absolute",
@@ -106,56 +112,9 @@ const selectStyle = {
   color: "white",
 };
 
-const selectStatus = document.getElementById("status");
-const statusLabel = document.getElementById("status_label_holder");
-selectStatus.addEventListener("click", function () {
-  statusLabel.style.position = selectStyle.position;
-  statusLabel.style.top = selectStyle.top;
-  statusLabel.style.fontSize = selectStyle.fontSize;
-  statusLabel.style.color = selectStyle.color;
-});
-selectStatus.addEventListener("focusout", function () {
-  if (!selectStatus.value) {
-    statusLabel.style.position = "";
-    statusLabel.style.top = "";
-    statusLabel.style.fontSize = "";
-    statusLabel.style.color = "";
-  }
-});
-
-const selectSpecies = document.getElementById("species");
-const speciesLabel = document.getElementById("species_label_holder");
-selectSpecies.addEventListener("click", function () {
-  speciesLabel.style.position = selectStyle.position;
-  speciesLabel.style.top = selectStyle.top;
-  speciesLabel.style.fontSize = selectStyle.fontSize;
-  speciesLabel.style.color = selectStyle.color;
-});
-selectSpecies.addEventListener("focusout", function () {
-  if (!selectSpecies.value) {
-    speciesLabel.style.position = "";
-    speciesLabel.style.top = "";
-    speciesLabel.style.fontSize = "";
-    speciesLabel.style.color = "";
-  }
-});
-
-const selectGender = document.getElementById("gender");
-const genderLabel = document.getElementById("gender_label_holder");
-selectGender.addEventListener("click", function () {
-  genderLabel.style.position = selectStyle.position;
-  genderLabel.style.top = selectStyle.top;
-  genderLabel.style.fontSize = selectStyle.fontSize;
-  genderLabel.style.color = selectStyle.color;
-});
-selectGender.addEventListener("focusout", function () {
-  if (!selectGender.value) {
-    genderLabel.style.position = "";
-    genderLabel.style.top = "";
-    genderLabel.style.fontSize = "";
-    genderLabel.style.color = "";
-  }
-});
+inputStyleLabel(selectStatus, statusLabel);
+inputStyleLabel(selectGender, genderLabel);
+inputStyleLabel(selectSpecies, speciesLabel);
 
 document.addEventListener("DOMContentLoaded", () => {
   getCharacters();

@@ -48,6 +48,7 @@ nav ul {
   list-style: none;
   display: flex;
 }
+
 nav ul li {
   color: #fff;
   font-family: "Montserrat", sans-serif;
@@ -58,6 +59,7 @@ nav ul li {
   position: relative;
   margin-right: 50px;
 }
+
 nav ul li::after {
   content: "";
   position: absolute;
@@ -73,10 +75,12 @@ nav ul li::after {
   transition: transform 0.5s ease-out;
   margin-top: 5px;
 }
+
 nav ul li:hover::after {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
+
 nav ul li:hover {
   letter-spacing: 1px;
 }

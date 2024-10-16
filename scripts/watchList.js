@@ -2,12 +2,10 @@ let episodesList = [];
 async function getEpisodesNameList() {
   try {
     let episodesData = [];
-
-    for (let i = 1; i <= 3; i++) {
+    const episodePageAmount = 3;
+    for (let i = 1; i <= episodePageAmount; i++) {
       const apiUrl = `https://rickandmortyapi.com/api/episode?page=${i}`;
       const response = await fetch(apiUrl);
-      if (!response.ok) {
-      }
       const data = await response.json();
       if (data.results.length > 0) {
         episodesData = [...episodesData, ...data.results];
@@ -18,12 +16,13 @@ async function getEpisodesNameList() {
     console.error("There has been a problem with your fetch operation:", error);
   }
 }
+const colorWatched = {
+  true: "linear-gradient(135deg, rgb(0, 255, 240) 0%, rgb(128, 255, 83) 100%)",
+  false: "linear-gradient(135deg, rgb(17, 17, 17) 0%, rgb(42, 42, 42) 100%)",
+};
+
 function showWatchList() {
   let watchList = JSON.parse(localStorage.getItem("watchList")) || [];
-  const colorWatched = {
-    true: "linear-gradient(135deg, rgb(0, 255, 240) 0%, rgb(128, 255, 83) 100%)",
-    false: "linear-gradient(135deg, rgb(17, 17, 17) 0%, rgb(42, 42, 42) 100%)",
-  };
   const watchListContainer = document.getElementById("watch_list");
   watchListContainer.innerHTML = ``;
   if (watchList.length === 0) {
@@ -32,34 +31,31 @@ function showWatchList() {
     watchListContainer.append(message);
   }
   watchList.forEach((episode) => {
+    let { id, name, watched } = episode;
     const watchListItem = document.createElement("div");
-    watchListItem.id = episode.id;
+    watchListItem.id = id;
 
     const deleteButton = document.createElement("button");
     deleteButton.innerHTML = `<i class="fa fa-trash-o"></i>`;
 
     const watchCheckBox = document.createElement("span");
-    const episodeName = document.createElement("span");
-    episodeName.textContent = episode.name;
-
-    watchListItem.append(deleteButton);
-    watchListItem.append(episodeName);
-    watchListItem.append(watchCheckBox);
-    watchListContainer.append(watchListItem);
-
     watchCheckBox.className = "watch";
     watchCheckBox.style.background = episode.watched
       ? colorWatched.true
       : colorWatched.false;
 
+    const episodeName = document.createElement("span");
+    episodeName.textContent = name;
+
+    watchListItem.append(deleteButton, episodeName, watchCheckBox);
+    watchListContainer.append(watchListItem);
+
     watchCheckBox.addEventListener("click", () => {
-      episode.watched = !episode.watched;
-      watchCheckBox.style.background = episode.watched
+      watched = !watched;
+      watchCheckBox.style.background = watched
         ? colorWatched.true
         : colorWatched.false;
-      watchList = watchList.map((item) =>
-        item.id === episode.id ? episode : item
-      );
+      watchList = watchList.map((item) => (item.id === id ? episode : item));
       localStorage.setItem("watchList", JSON.stringify(watchList));
     });
 
@@ -98,6 +94,7 @@ autocompleteInput.addEventListener("input", (event) => {
     suggestionItem.addEventListener("click", function () {
       autocompleteInput.value = suggestion;
       episodesSuggestionContainer.innerHTML = "";
+      inputStyleLabel(autocompleteInput, episodeLabel);
 
       episodeLabel.style.position = selectStyle.position;
       episodeLabel.style.top = selectStyle.top;
@@ -115,22 +112,7 @@ document.addEventListener("click", function (event) {
   }
 });
 
-autocompleteInput.addEventListener("click", function () {
-  episodeLabel.style.position = selectStyle.position;
-  episodeLabel.style.top = selectStyle.top;
-  episodeLabel.style.fontSize = selectStyle.fontSize;
-  episodeLabel.style.color = selectStyle.color;
-});
-
-autocompleteInput.addEventListener("focusout", function () {
-  console.log(autocompleteInput.value);
-  if (!autocompleteInput.value) {
-    episodeLabel.style.position = "";
-    episodeLabel.style.top = "";
-    episodeLabel.style.fontSize = "";
-    episodeLabel.style.color = "";
-  }
-});
+inputStyleLabel(autocompleteInput, episodeLabel);
 
 addToWatchListButton.addEventListener("click", () => {
   if (autocompleteInput.value.length != 0) {

@@ -4,6 +4,7 @@
   width: 80%;
   margin: 50px 0;
 }
+
 .location_filter_wrapper input {
   font-family: "Montserrat";
   height: 50px;
@@ -17,6 +18,7 @@
   appearance: none;
   cursor: pointer;
 }
+
 .filter {
   position: relative;
   width: 300px;

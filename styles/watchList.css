@@ -5,14 +5,17 @@
   justify-content: center;
   font-family: "Montserrat", sans-serif;
 }
+
 .watch_list_search {
   display: flex;
   margin-top: 20px;
   justify-content: center;
 }
+
 .episode_autocomplete_wrapper {
   position: relative;
 }
+
 .episode_autocomplete_wrapper input {
   height: 50px;
   width: 300px;
@@ -73,6 +76,7 @@
 .episodes_suggestion div:hover {
   background-color: #e9e9e9;
 }
+
 #watch_list {
   margin-top: 50px;
   display: flex;
@@ -80,6 +84,7 @@
   justify-content: center;
   align-items: center;
 }
+
 #watch_list div {
   display: flex;
   background-color: #333;
@@ -93,16 +98,19 @@
   padding: 0 40px;
   width: 80%;
 }
+
 #watch_list button {
   all: unset;
   color: #000;
   font-size: 40px;
 }
+
 .watch {
   border-radius: 5px;
   height: 20px;
   width: 20px;
 }
+
 #watch_list h5 {
   color: #fff;
   font-size: 16px;

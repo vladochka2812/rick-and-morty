@@ -34,14 +34,10 @@ async function getEpisodes() {
     const container = document.getElementById("episodes_table");
     const response = await fetch(apiUrl);
     if (!response.ok) {
-      container.innerHTML = "";
       container.style.display = "flex";
       container.style.flexDirection = "row";
       container.style.justifyContent = "center";
-      const emptyMessage = document.createElement("div");
-      emptyMessage.className = "characters_selectors_wrapper";
-      emptyMessage.innerHTML = `<h4 class="empty_message">There is nothing to display</h4>`;
-      container.append(emptyMessage);
+      emptyMessage(container);
     }
     const data = await response.json();
     if (data.results.length > 0) {
